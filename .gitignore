@@ -1,7 +1,3 @@
-# Timetables
-Timetables/*.txt
-
-
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
@@ -91,3 +87,7 @@ ENV/
 
 # Rope project settings
 .ropeproject
+
+# Python ide
+.idea/*
+Timetables/*.txt
