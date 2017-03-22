@@ -6,7 +6,9 @@ class ClockW(QtGui.QLCDNumber):
     def __init__(self, parent):
         super(ClockW, self).__init__(8,parent)
         self.setSegmentStyle(QtGui.QLCDNumber.Filled)
-        self.resize(500, 200)
+        self.configure_layout()
+
+    def configure_layout(self):
         palette = QtGui.QPalette()
         palette.setColor(QtGui.QPalette.WindowText,QtGui.QColor(230,0,0))
         self.setPalette(palette)
