@@ -3,7 +3,7 @@ from datetime import date
 import os.path
 
 MPK_CONFIGURATION = 'Config/mpkLineList.cfg'
-
+MPK_LOGS = 'Timetables/logs.txt'
 
 class MpkStopInfo:
     def __init__(self, line):
@@ -35,10 +35,6 @@ class MpkUpdate:
     def parseConfiguration(self):
         self.mpkStopsInfo = []
         with open(MPK_CONFIGURATION, encoding='utf-8') as f:
-            f.readline()
-            dataLine = f.readline().strip().split("-")
-            self.lastUpdate = date(int(dataLine[0]), int(dataLine[1]), int(dataLine[2]))
-
             for line in f:
                 if line.startswith("#"):
                     continue
@@ -46,6 +42,11 @@ class MpkUpdate:
                     self.mpkStopsInfo.append(MpkStopInfo(line))
 
     def updatingNecesity(self):
+        with open(MPK_LOGS) as f:
+            f.readline()
+            dataLine = f.readline().strip().split("-")
+            self.lastUpdate = date(int(dataLine[0]), int(dataLine[1]), int(dataLine[2]))
+
         for mpkInfo in self.mpkStopsInfo:
             if not os.path.isfile(mpkInfo.getFilePath()):
                 return True
@@ -60,12 +61,9 @@ class MpkUpdate:
         self.upadeDataInConfig()
 
     def upadeDataInConfig(self):
-        f = open(MPK_CONFIGURATION, 'r')
-        s = f.readlines();
-        f.close()
-        s[1] = date.today().isoformat() + "\n"
-        f = open(MPK_CONFIGURATION, 'w')
-        f.write(''.join(s))
+        f = open(MPK_LOGS, 'w')
+        f.write('#Last update:\n')
+        f.write(date.today().isoformat() + "\n")
         f.close()
 
     def mpkParser(self, mpkInfo):
