@@ -91,3 +91,7 @@ ENV/
 # Python ide
 .idea/*
 Timetables/*.txt
+Pictures/*
+.idea/
+Pictures/
+Timetables/
