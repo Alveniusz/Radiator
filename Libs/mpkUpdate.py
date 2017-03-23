@@ -1,3 +1,5 @@
+from PySide.QtCore import Qt
+from PySide.QtGui import *
 import requests
 from datetime import date
 import os.path
@@ -93,3 +95,24 @@ class MpkUpdate:
 
     def getMpkList(self):
         return self.mpkStopsInfo
+
+
+class MpkUpdate_GUI(MpkUpdate):
+    def __init__(self):
+        super().__init__()
+
+    def downloadData(self):
+        progress = QProgressDialog("Update timetabless...", "Abort", 0, len(self.mpkStopsInfo))
+        progress.setWindowModality(Qt.WindowModal)
+        progress.setWindowTitle('Update timetabless...')
+        progress.setMinimumDuration(0)
+        progress.forceShow()
+
+        for i in range(len(self.mpkStopsInfo)):
+            if progress.wasCanceled():
+                return
+            progress.setLabelText("Download timetable {0} ({1}/{2})".format(self.mpkStopsInfo[i].line, i+1, len(self.mpkStopsInfo)))
+            progress.setValue(i)
+            self.mpkParser(self.mpkStopsInfo[i])
+
+        self.upadeDataInConfig()

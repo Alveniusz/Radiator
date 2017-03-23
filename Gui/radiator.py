@@ -1,4 +1,3 @@
-from PySide.QtCore import *
 from PySide.QtGui import *
 
 class Radiator(QMainWindow):
@@ -15,7 +14,8 @@ class Radiator(QMainWindow):
         palette	= QPalette()
         palette.setBrush(QPalette.Background,QBrush(QPixmap("Pictures/Background.jpg")))
         self.setPalette(palette)
-        self.setWindowTitle('Radiator')
+
+
         self.setGeometry(300, 300, 300, 150)
 
     def initWidgets(self):

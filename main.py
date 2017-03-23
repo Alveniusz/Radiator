@@ -1,16 +1,16 @@
 import sys
+
 from PySide.QtGui import QApplication
 
-from radiator import Radiator
-from Libs.mpkUpdate import MpkUpdate
+from Libs.mpkUpdate import MpkUpdate_GUI
 
 
 def main():
     app = QApplication(sys.argv)
 
-    mpk = MpkUpdate()
+    mpk = MpkUpdate_GUI()
 
-    r = Radiator()
+    # r = Radiator()
 
     app.exec_()
     sys.exit()
