@@ -2,15 +2,17 @@ from PySide.QtGui import *
 from PySide.QtCore import *
 
 class LineHeader(QLabel):
-    def __init__(self, parent, lineNum, lineDestination):
+    def __init__(self, parent, lineNum, lineDestination, state = True):
         super().__init__(parent)
         self.setLineAndDestination(lineNum,lineDestination)
+        self.state = state
 
         f = QFont("Arial", 9, QFont.Bold)
         self.setFont(f)
         self.setAlignment(Qt.AlignCenter)
         self.setFrameStyle(QFrame.StyledPanel)
-        self.colorThisLabel(1)
+        self.colorLabelByState()
+
 
     def setLineAndDestination(self, lineNum, lineDestination):
         self.line = lineNum
@@ -34,3 +36,15 @@ class LineHeader(QLabel):
 
         style += " }"
         self.setStyleSheet(style)
+
+    def mouseReleaseEvent(self, ev):
+        self.state = not self.state
+        self.colorLabelByState()
+
+        self.emit(SIGNAL('clicked()'))
+
+    def colorLabelByState(self):
+        if self.state:
+            self.colorThisLabel(1)
+        else:
+            self.colorThisLabel(2)

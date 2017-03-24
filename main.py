@@ -8,12 +8,13 @@ from Libs.mpkUpdate import MpkUpdate_GUI
 def main():
     app = QApplication(sys.argv)
 
-    widget = MpkListener()
-    widget.setGeometry(700,50,600,900)
-    widget.show()
+    mpk = MpkUpdate_GUI()
 
-    # mpk = MpkUpdate_GUI()
-    # r = Radiator()
+    # widget = MpkListener()
+    # widget.setGeometry(700,50,600,900)
+    # widget.show()
+
+    r = Radiator()
 
     app.exec_()
     sys.exit()

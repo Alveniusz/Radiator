@@ -1,5 +1,7 @@
 from PySide.QtGui import *
 
+from Gui.MpkListener import MpkListener
+
 class Radiator(QMainWindow):
     def __init__(self):
         super(Radiator, self).__init__()
@@ -11,6 +13,7 @@ class Radiator(QMainWindow):
         self.showMaximized()
 
     def setMainWindowsParameters(self):
+        self.setWindowTitle('Radiator')
         palette	= QPalette()
         palette.setBrush(QPalette.Background,QBrush(QPixmap("Pictures/Background.jpg")))
         self.setPalette(palette)
@@ -26,8 +29,7 @@ class Radiator(QMainWindow):
         self.leftWidget = QFrame()
         self.leftWidget.setFrameStyle(QFrame.Box)
 
-        self.rightWidget = QFrame()
-        self.rightWidget.setFrameStyle(QFrame.Box)
+        self.rightWidget = MpkListener()
 
     def setWidgetsLayout(self):
         mainVerticalLayout = QVBoxLayout()
@@ -35,7 +37,7 @@ class Radiator(QMainWindow):
 
         midFrame = QFrame(self)
         mainHorizontalLayout.addWidget(self.leftWidget,7)
-        mainHorizontalLayout.addWidget(self.rightWidget,1)
+        mainHorizontalLayout.addWidget(self.rightWidget,3)
         midFrame.setLayout(mainHorizontalLayout)
 
         mainVerticalLayout.addWidget(self.topWidget,2)
