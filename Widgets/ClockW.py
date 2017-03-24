@@ -3,7 +3,7 @@ from PySide import QtGui
 
 
 class ClockW(QtGui.QLCDNumber):
-    def __init__(self, parent):
+    def __init__(self, parent = None):
         super(ClockW, self).__init__(8,parent)
         self.setSegmentStyle(QtGui.QLCDNumber.Filled)
         self.configure_layout()

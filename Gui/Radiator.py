@@ -15,9 +15,6 @@ class Radiator(QMainWindow):
         palette.setBrush(QPalette.Background,QBrush(QPixmap("Pictures/Background.jpg")))
         self.setPalette(palette)
 
-
-        self.setGeometry(300, 300, 300, 150)
-
     def initWidgets(self):
         # Replace frames with correct widgets when ready
         self.topWidget = QFrame()
@@ -38,7 +35,7 @@ class Radiator(QMainWindow):
 
         midFrame = QFrame(self)
         mainHorizontalLayout.addWidget(self.leftWidget,7)
-        mainHorizontalLayout.addWidget(self.rightWidget,3)
+        mainHorizontalLayout.addWidget(self.rightWidget,1)
         midFrame.setLayout(mainHorizontalLayout)
 
         mainVerticalLayout.addWidget(self.topWidget,2)
@@ -54,11 +51,5 @@ class Radiator(QMainWindow):
 
 
 
-    # def initTimer(self):
-    #     timer = QTimer(self)
-    #     self.connect(timer, SIGNAL('timeout()'), self.updateTime)
-    #     timer.start(1000)
-    #
-    # def updateTime(self):
-    #     qtime = QTime.currentTime()
+
 
