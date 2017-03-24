@@ -133,7 +133,7 @@ class MpkBigLine(QFrame):
             else:
                 self.timeToLabel.setText("Departure <br> <font color=blue size=5 style=Consolas> {0:2d} min {1:d} s</font>".format(min,sec))
 
-            if min < 16:
+            if min < 16 and sec < 2:
                 self.colorThisLabelAfterTime(min)
         else:
             self.timeToLabel.setText("Departure <br> <font color=blue size=5 style=Consolas> -- min -- s</font>")

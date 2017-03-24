@@ -95,6 +95,7 @@ class MpkListener(QWidget):
 
             mpkTime = self.mpkTimetable[curInd]
             self.bigMpkLines[acceptedTimes].fillLabels(mpkTime, self.getLineDestinationByLineNumber(mpkTime.line), qtime)
+            self.bigMpkLines[acceptedTimes].updateTime(qtime)
             acceptedTimes += 1
             curInd += 1
 
@@ -123,7 +124,6 @@ class MpkListener(QWidget):
             self.fillBigMpkFrames()
 
     def getCurentTimeIndex(self, qtime):
-        qtime = QTime.currentTime()
         ind = 0
         while ind < (len(self.mpkTimetable)):
             if not self.mpkTimetable[ind].afterTime(qtime):
