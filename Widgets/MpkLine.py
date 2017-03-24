@@ -21,17 +21,14 @@ class MpkBigLine(QFrame):
         self.lineLabel = QLabel()
         self.colorlLineLabel()
         horLayout.addWidget(self.lineLabel, 4)
-        horLayout.addStretch(1)
 
         self.destinationLabel = QLabel()
         self.colorDestinationLabel()
         horLayout.addWidget(self.destinationLabel, 12)
-        horLayout.addStretch(1)
 
         self.timeToLabel = QLabel()
         self.colorTimeToLabel()
         horLayout.addWidget(self.timeToLabel, 7)
-        horLayout.addStretch(1)
 
         self.timetableLabel = QLabel()
         self.colorTimetableLabel()
@@ -133,7 +130,7 @@ class MpkBigLine(QFrame):
             else:
                 self.timeToLabel.setText("Departure <br> <font color=blue size=5 style=Consolas> {0:2d} min {1:d} s</font>".format(min,sec))
 
-            if min < 16 and sec < 2:
+            if min < 16:
                 self.colorThisLabelAfterTime(min)
         else:
             self.timeToLabel.setText("Departure <br> <font color=blue size=5 style=Consolas> -- min -- s</font>")
