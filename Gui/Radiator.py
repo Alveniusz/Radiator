@@ -1,6 +1,8 @@
 from PySide.QtGui import *
+from PySide.QtCore import *
 
 from Gui.MpkListener import MpkListener
+from Gui.QuoteWidget import QuoteWidget
 
 class Radiator(QMainWindow):
     def __init__(self):
@@ -20,13 +22,22 @@ class Radiator(QMainWindow):
 
     def initWidgets(self):
         # Replace frames with correct widgets when ready
-        self.topWidget = QFrame()
-        self.topWidget.setFrameStyle(QFrame.Box)
 
-        self.bottomWidget = QFrame()
+        self.topWidget = QuoteWidget()
+
+        self.topRightWidget = QLabel("Alarm")
+        self.topRightWidget.setAlignment(Qt.AlignCenter)
+        self.topRightWidget.setFont(QFont("Arial", 27, QFont.Bold))
+        self.topRightWidget.setFrameStyle(QFrame.Box)
+
+        self.bottomWidget = QLabel("Important note")
+        self.bottomWidget.setAlignment(Qt.AlignCenter)
+        self.bottomWidget.setFont(QFont("Arial", 27, QFont.Bold))
         self.bottomWidget.setFrameStyle(QFrame.Box)
 
-        self.leftWidget = QFrame()
+        self.leftWidget = QLabel("Weather")
+        self.leftWidget.setAlignment(Qt.AlignCenter)
+        self.leftWidget.setFont(QFont("Arial", 27, QFont.Bold))
         self.leftWidget.setFrameStyle(QFrame.Box)
 
         self.rightWidget = MpkListener()
@@ -34,15 +45,21 @@ class Radiator(QMainWindow):
     def setWidgetsLayout(self):
         mainVerticalLayout = QVBoxLayout()
         mainHorizontalLayout = QHBoxLayout()
+        mainTopHorizontalLayout = QHBoxLayout()
+
+        topFrame = QFrame(self)
+        mainTopHorizontalLayout.addWidget(self.topWidget,17)
+        mainTopHorizontalLayout.addWidget(self.topRightWidget,3)
+        topFrame.setLayout(mainTopHorizontalLayout)
 
         midFrame = QFrame(self)
         mainHorizontalLayout.addWidget(self.leftWidget,7)
         mainHorizontalLayout.addWidget(self.rightWidget,3)
         midFrame.setLayout(mainHorizontalLayout)
 
-        mainVerticalLayout.addWidget(self.topWidget,2)
-        mainVerticalLayout.addWidget(midFrame,17)
-        mainVerticalLayout.addWidget(self.bottomWidget,1)
+        mainVerticalLayout.addWidget(topFrame)
+        mainVerticalLayout.addWidget(midFrame,16)
+        mainVerticalLayout.addWidget(self.bottomWidget,2)
 
         widget = QWidget()
         widget.setLayout(mainVerticalLayout)

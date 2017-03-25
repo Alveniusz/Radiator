@@ -14,8 +14,6 @@ class MpkListener(QWidget):
     def __init__(self, parent=None):
         super().__init__(parent)
 
-        self.start = 0
-
         self.addMpkInfo()
 
         self.initWidgets()
@@ -108,8 +106,6 @@ class MpkListener(QWidget):
         timer.start(1000)
 
     def updateTime(self):
-        self.start += 1
-
         qtime = QTime.currentTime()
         self.clockW.update_time(qtime)
 

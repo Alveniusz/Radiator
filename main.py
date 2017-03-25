@@ -3,15 +3,16 @@ import sys
 from PySide.QtGui import QApplication
 from Gui.Radiator import Radiator
 from Gui.MpkListener import MpkListener
+from Gui.QuoteWidget import QuoteWidget
 from Libs.mpkUpdate import MpkUpdate_GUI
 
 def main():
     app = QApplication(sys.argv)
 
-    mpk = MpkUpdate_GUI()
+    # mpk = MpkUpdate_GUI()
 
-    # widget = MpkListener()
-    # widget.setGeometry(700,50,600,900)
+    # widget = QuoteWidget()
+    # widget.setGeometry(50,50,1200,100)
     # widget.show()
 
     r = Radiator()
