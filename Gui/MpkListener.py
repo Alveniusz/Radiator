@@ -62,12 +62,14 @@ class MpkListener(QWidget):
 
         self.bigMpkFrames = QFrame(self)
         self.bigMpkFrames.setFrameStyle(QFrame.Box)
-        self.headerLines = QLabel("Departures")
+        self.headerLines = QLabel("MPK Departures")
         self.headerLines.setAlignment(Qt.AlignCenter)
         self.headerLines.setFont(QFont("Arial", 27, QFont.Bold))
         pallete = QPalette()
         pallete.setColor(QPalette.Foreground, Qt.black)
+        pallete.setColor(QPalette.Background, QColor(255, 255, 255, 150))
         self.headerLines.setPalette(pallete)
+        self.headerLines.setAutoFillBackground(True)
         hLayout.addWidget(self.headerLines,1)
 
         self.bigMpkLines = []

@@ -60,7 +60,7 @@ class AddQuote(QDialog):
 class QuoteBrowser(QDialog):
     def __init__(self, parent=None, const = False):
         super().__init__(parent)
-        self.setWindowTitle("Select quote")
+        self.setWindowTitle("Select quote...")
         self.setMinimumWidth(1000)
 
         self.constQuote = const

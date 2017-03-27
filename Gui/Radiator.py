@@ -3,6 +3,7 @@ from PySide.QtCore import *
 
 from Gui.MpkListener import MpkListener
 from Gui.QuoteWidget import QuoteWidget
+from Gui.NotificationLine import NotificationLine
 
 class Radiator(QMainWindow):
     def __init__(self):
@@ -13,6 +14,8 @@ class Radiator(QMainWindow):
         self.initWidgets()
         self.setWidgetsLayout()
         self.showMaximized()
+
+        self.adjustWidgets()
 
     def setMainWindowsParameters(self):
         self.setWindowTitle('Radiator')
@@ -30,10 +33,7 @@ class Radiator(QMainWindow):
         self.topRightWidget.setFont(QFont("Arial", 27, QFont.Bold))
         self.topRightWidget.setFrameStyle(QFrame.Box)
 
-        self.bottomWidget = QLabel("Important note")
-        self.bottomWidget.setAlignment(Qt.AlignCenter)
-        self.bottomWidget.setFont(QFont("Arial", 27, QFont.Bold))
-        self.bottomWidget.setFrameStyle(QFrame.Box)
+        self.bottomWidget = NotificationLine()
 
         self.leftWidget = QLabel("Weather")
         self.leftWidget.setAlignment(Qt.AlignCenter)
@@ -65,6 +65,8 @@ class Radiator(QMainWindow):
         widget.setLayout(mainVerticalLayout)
         self.setCentralWidget(widget)
 
+    def adjustWidgets(self):
+        self.bottomWidget.setLabelsStart()
 
 
 
