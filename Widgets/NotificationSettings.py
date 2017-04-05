@@ -21,6 +21,7 @@ class NotificationSettings(QDialog):
         self.loadSettings()
 
     def initWidgets(self):
+        self.defaultButton = QPushButton("Restore defaults")
         self.okButton = QPushButton("Ok")
         self.okButton.setDefault(True)
         self.okButton.setAutoDefault(True)
@@ -56,8 +57,10 @@ class NotificationSettings(QDialog):
         hLayout.addWidget(self.setTurnOffBox,1)
         mainLayout.addLayout(hLayout)
         hLayout = QHBoxLayout()
-        hLayout.addWidget(self.okButton)
-        hLayout.addWidget(self.cancelButton)
+        hLayout.addWidget(self.defaultButton,1)
+        hLayout.addStretch(2)
+        hLayout.addWidget(self.okButton,1)
+        hLayout.addWidget(self.cancelButton,1)
         mainLayout.addLayout(hLayout)
 
         self.setLayout(mainLayout)
@@ -66,6 +69,7 @@ class NotificationSettings(QDialog):
         self.connect(self.cancelButton, SIGNAL('clicked()'), self.reject)
         self.connect(self.okButton, SIGNAL('clicked()'), self.accept)
         self.connect(self.colorButton, SIGNAL('clicked()'), self.selectColor)
+        self.connect(self.defaultButton, SIGNAL('clicked()'), self.restoreDefaults)
 
     def accept(self):
         self.saveSettings()
@@ -115,6 +119,11 @@ class NotificationSettings(QDialog):
 
     def initSettings(self):
         self.settings = { "notifications":["" for i in range(NOTIFICATION_INPUT_LINES)],
-                          "colorName":"",
+                          "colorName":"#aa0000",
                           "freeze":False,
                           "turnOff":False}
+        self.settings["notifications"][0] = "Delivery stop"
+
+    def restoreDefaults(self):
+        self.initSettings()
+        self.setWidgets()
