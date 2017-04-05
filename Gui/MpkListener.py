@@ -42,7 +42,7 @@ class MpkListener(QWidget):
         mainVerticalLayout = QVBoxLayout()
         mainVerticalLayout.setAlignment(Qt.AlignTop)
 
-        mainVerticalLayout.addWidget(self.clockW, 1)
+        mainVerticalLayout.addWidget(self.clockW, 2)
         mainVerticalLayout.addLayout(self.linesHeaderLayout, 1)
         mainVerticalLayout.addWidget(self.bigMpkFrames, NUM_OF_MPK_LINE_WIDGETS)
 
