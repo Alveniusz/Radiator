@@ -1,1 +1,1 @@
-{"colorName": "#ff0000", "notifications": ["Delivery stop", "AAA", ""], "freeze": false, "turnOff": false}
+{"notifications": ["Delivery stop", "", ""], "freeze": false, "turnOff": false, "colorName": "#aa0000"}

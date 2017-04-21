@@ -15,7 +15,7 @@ class Radiator(QMainWindow):
         self.setWidgetsLayout()
         self.showMaximized()
 
-        self.adjustWidgets()
+        # self.adjustWidgets()
 
     def setMainWindowsParameters(self):
         self.setWindowTitle('Radiator')
@@ -65,8 +65,8 @@ class Radiator(QMainWindow):
         widget.setLayout(mainVerticalLayout)
         self.setCentralWidget(widget)
 
-    def adjustWidgets(self):
-        self.bottomWidget.setLabelsStart()
+    # def adjustWidgets(self):
+    #     self.bottomWidget.setLabelsStart()
 
 
 
