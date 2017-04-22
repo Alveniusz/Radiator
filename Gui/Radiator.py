@@ -35,16 +35,22 @@ class Radiator(QMainWindow):
 
         self.bottomWidget = NotificationLine()
 
-        self.leftWidget = QLabel("Weather")
-        self.leftWidget.setAlignment(Qt.AlignCenter)
-        self.leftWidget.setFont(QFont("Arial", 27, QFont.Bold))
-        self.leftWidget.setFrameStyle(QFrame.Box)
+        self.leftTopWidget = QLabel("DayInfo")
+        self.leftTopWidget.setAlignment(Qt.AlignCenter)
+        self.leftTopWidget.setFont(QFont("Arial", 27, QFont.Bold))
+        self.leftTopWidget.setFrameStyle(QFrame.Box)
+
+        self.leftBottomWidget = QLabel("Weather")
+        self.leftBottomWidget.setAlignment(Qt.AlignCenter)
+        self.leftBottomWidget.setFont(QFont("Arial", 27, QFont.Bold))
+        self.leftBottomWidget.setFrameStyle(QFrame.Box)
 
         self.rightWidget = MpkListener()
 
     def setWidgetsLayout(self):
         mainVerticalLayout = QVBoxLayout()
         mainHorizontalLayout = QHBoxLayout()
+        midLeftVerticalLayout = QVBoxLayout()
         mainTopHorizontalLayout = QHBoxLayout()
 
         topFrame = QFrame(self)
@@ -52,8 +58,14 @@ class Radiator(QMainWindow):
         mainTopHorizontalLayout.addWidget(self.topRightWidget,3)
         topFrame.setLayout(mainTopHorizontalLayout)
 
+
+        midLeftFrame = QFrame(self)
+        midLeftVerticalLayout.addWidget(self.leftTopWidget,1)
+        midLeftVerticalLayout.addWidget(self.leftBottomWidget,3)
+        midLeftFrame.setLayout(midLeftVerticalLayout)
+
         midFrame = QFrame(self)
-        mainHorizontalLayout.addWidget(self.leftWidget,7)
+        mainHorizontalLayout.addWidget(midLeftFrame,7)
         mainHorizontalLayout.addWidget(self.rightWidget,3)
         midFrame.setLayout(mainHorizontalLayout)
 
