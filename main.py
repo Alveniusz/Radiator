@@ -1,20 +1,28 @@
 import sys
 
-from PySide.QtGui import QApplication
+from PySide.QtCore import *
+
+from PySide.QtGui import *
+from PySide.QtGui import QApplication, QMainWindow
+
 from Gui.Radiator import Radiator
-from Gui.MpkListener import MpkListener
-from Gui.QuoteWidget import QuoteWidget
-from Libs.mpkUpdate import MpkUpdate_GUI
+
+def testWidget(testedWidget):
+    testLayout = QHBoxLayout()
+    testLayout.addWidget(testedWidget)
+
+    mainWidget = QWidget()
+    mainWidget.setLayout(testLayout)
+
+    testMainWindow = QMainWindow()
+    testMainWindow.setCentralWidget(mainWidget)
+    testMainWindow.show()
+    return testMainWindow
 
 def main():
     app = QApplication(sys.argv)
 
     # mpk = MpkUpdate_GUI()
-
-    # widget = QuoteWidget()
-    # widget.setGeometry(50,50,1200,100)
-    # widget.show()
-
     r = Radiator()
 
     app.exec_()

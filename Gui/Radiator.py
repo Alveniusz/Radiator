@@ -4,6 +4,7 @@ from PySide.QtCore import *
 from Gui.MpkListener import MpkListener
 from Gui.QuoteWidget import QuoteWidget
 from Gui.NotificationLine import NotificationLine
+from Gui.CalendarDay import CalendarDay
 
 class Radiator(QMainWindow):
     def __init__(self):
@@ -35,12 +36,14 @@ class Radiator(QMainWindow):
 
         self.bottomWidget = NotificationLine()
 
-        self.leftTopWidget = QLabel("DayInfo")
-        self.leftTopWidget.setAlignment(Qt.AlignCenter)
-        self.leftTopWidget.setFont(QFont("Arial", 27, QFont.Bold))
-        self.leftTopWidget.setFrameStyle(QFrame.Box)
+        self.leftTopWidget = CalendarDay()
 
-        self.leftBottomWidget = QLabel("Weather")
+        self.leftMedWidget = QLabel("Weather")
+        self.leftMedWidget.setAlignment(Qt.AlignCenter)
+        self.leftMedWidget.setFont(QFont("Arial", 27, QFont.Bold))
+        self.leftMedWidget.setFrameStyle(QFrame.Box)
+
+        self.leftBottomWidget = QLabel("SprintProgress")
         self.leftBottomWidget.setAlignment(Qt.AlignCenter)
         self.leftBottomWidget.setFont(QFont("Arial", 27, QFont.Bold))
         self.leftBottomWidget.setFrameStyle(QFrame.Box)
@@ -60,8 +63,9 @@ class Radiator(QMainWindow):
 
 
         midLeftFrame = QFrame(self)
-        midLeftVerticalLayout.addWidget(self.leftTopWidget,1)
-        midLeftVerticalLayout.addWidget(self.leftBottomWidget,3)
+        midLeftVerticalLayout.addWidget(self.leftTopWidget,7)
+        midLeftVerticalLayout.addWidget(self.leftMedWidget,12)
+        midLeftVerticalLayout.addWidget(self.leftBottomWidget,2)
         midLeftFrame.setLayout(midLeftVerticalLayout)
 
         midFrame = QFrame(self)
