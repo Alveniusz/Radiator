@@ -1,6 +1,8 @@
 from PySide.QtGui import *
 from PySide.QtCore import *
 
+from Libs.calendarReader import readCalendar
+
 FORENAMES_FILE = "Calendar/Forenames_PL.txt"
 HOLIDAY_FILE_PART = "Calendar/Holiday_PL_"
 
@@ -10,18 +12,17 @@ class CalendarDay(QFrame):
 
         self.initWidgets()
         self.formatLabels()
-
         self.formatBackground()
 
         self.initFirstTimer()
 
     def initWidgets(self):
-        self.dateLabel = QLabel("26 Mai 2017")
-        self.holidayText = QLabel("Mother Day")
-        self.weekDayName = QLabel("Friday")
-        self.weekNumber = QLabel("Week num: 14")
-        self.namesLabel = QLabel("Today celebrate")
-        self.namesText = QLabel("Łucja, Tomasz,\nJoanna")
+        self.dateLabel = QLabel("")
+        self.holidayText = QLabel("")
+        self.weekDayName = QLabel("")
+        self.weekNumber = QLabel("")
+        self.namesLabel = QLabel("Today celebrate:")
+        self.namesText = QLabel("")
 
         verLeftLayout = QVBoxLayout()
         verLeftLayout.addWidget(self.weekDayName, 1)
@@ -101,32 +102,7 @@ class CalendarDay(QFrame):
         self.weekDayName.setText(days[date.dayOfWeek()])
         self.weekNumber.setText("Week num: " + str(date.weekNumber()[0]))
 
-        # TODO: move to lib file
-        monthsRome = ["I","II","III","IV","V","VI","VII","VIII","IX","X","XI","XII"]
-        dateRome = str(date.day()) + " " +  monthsRome[date.month()-1] + ";"
-
-        forenames = ""
-        forenamesNum = 0
-        with open(FORENAMES_FILE, encoding='utf-8') as f:
-            for line in f:
-                if line.count(dateRome):
-                    if forenamesNum:
-                        forenames += ", "
-                    if forenamesNum == 2:
-                        forenames += "\n"
-
-                    forenamesNum += 1
-                    forenames += line.split()[0]
-
-        if forenamesNum == 0:
-            forenames = "-"
-
-        holidayFile = HOLIDAY_FILE_PART + str(date.year()) + ".txt"
-        holiday = ""
-        with open(holidayFile, encoding='utf-8') as f:
-            for line in f:
-                if line.count(dateRome):
-                    holiday = line.split(";")[1].strip()
+        forenames, holiday = readCalendar()
 
         self.namesText.setText(forenames)
         self.holidayText.setText(holiday)
