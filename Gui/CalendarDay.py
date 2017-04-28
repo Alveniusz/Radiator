@@ -13,9 +13,7 @@ class CalendarDay(QFrame):
 
         self.formatBackground()
 
-        self.updateCalendar()
-
-        QTimer.singleShot(2000, self.initTimer)
+        self.initFirstTimer()
 
     def initWidgets(self):
         self.dateLabel = QLabel("26 Mai 2017")
@@ -93,7 +91,6 @@ class CalendarDay(QFrame):
 
 
     def updateCalendar(self):
-        print("Date updated")
         date = QDate.currentDate()
 
         # TODO: use locale
@@ -134,9 +131,13 @@ class CalendarDay(QFrame):
         self.namesText.setText(forenames)
         self.holidayText.setText(holiday)
 
+    def initFirstTimer(self):
+        self.updateCalendar()
+        current = QTime.currentTime()
+        secondsToMidnight = 3600*(24-current.hour()) - 60*current.minute() - current.second()
+        QTimer.singleShot(1000*(secondsToMidnight + 10), self.initTimer)
+
     def initTimer(self):
-        print("Timer started")
         timer = QTimer(self)
         self.connect(timer, SIGNAL('timeout()'), self.updateCalendar)
-        # timer.start(24*60*60*1000)
-        timer.start(1000)
+        timer.start(24*60*60*1000)
